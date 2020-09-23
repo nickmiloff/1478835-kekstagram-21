@@ -1,7 +1,7 @@
 'use strict';
 
 const PICTURES_DEFAULT_COUNT = 25;
-const templates = {
+const mockDataObj = {
   description: [
     `Moments...`,
     `Смотри что сфотографировал!`,
@@ -32,17 +32,22 @@ const templates = {
     `Яна`
   ]
 };
-const template = document.querySelector(`#picture`).content.querySelector(`.picture`);
-const picturesContainer = document.querySelector(`.pictures`);
+const pictureTemplateNode = document.querySelector(`#picture`).content.querySelector(`.picture`);
+const picturesContainerNode = document.querySelector(`.pictures`);
+const bodyNode = document.querySelector(`body`);
+const bigPictureNode = document.querySelector(`.big-picture`);
+const commentTemplateNode = bigPictureNode.querySelector(`.social__comment`).cloneNode(true);
+const commentsContainerNode = bigPictureNode.querySelector(`.social__comments`);
+let picturesArr = [];
 
-function generateComments() {
+function generateCommentsArr() {
   const commentsArr = [];
 
   for (let i = 0; i < window.getRandomInt(1, 2); i++) {
     commentsArr.push({
       avatar: `img/avatar-${window.getRandomInt(1, 6)}.svg`,
-      message: window.getRandomElem(templates.message),
-      name: window.getRandomElem(templates.message)
+      message: window.getRandomElem(mockDataObj.message),
+      name: window.getRandomElem(mockDataObj.name)
     });
   }
 
@@ -55,20 +60,20 @@ function generatePicturesDataArr(number = PICTURES_DEFAULT_COUNT) {
   for (let i = 0; i < number; i++) {
     pictures.push({
       url: `photos/${i + 1}.jpg`,
-      description: window.getRandomElem(templates.description),
+      description: window.getRandomElem(mockDataObj.description),
       likes: window.getRandomInt(15, 200),
-      comments: generateComments()
+      comments: generateCommentsArr()
     });
   }
 
   return pictures;
 }
 
-function getHtmlPictures(pictures) {
+function getHtmlPicturesFragment(pictures) {
   const fragment = document.createDocumentFragment();
 
   pictures.forEach((picture) => {
-    const elem = template.cloneNode(true);
+    const elem = pictureTemplateNode.cloneNode(true);
 
     elem.querySelector(`.picture__img`).src = picture.url;
     elem.querySelector(`.picture__likes`).textContent = picture.likes;
@@ -80,9 +85,45 @@ function getHtmlPictures(pictures) {
   return fragment;
 }
 
+function getHtmlCommentsFragment(comments) {
+  const fragment = document.createDocumentFragment();
+
+  comments.forEach((comment) => {
+    const elem = commentTemplateNode.cloneNode(true);
+
+    elem.querySelector(`.social__picture`).src = comment.avatar;
+    elem.querySelector(`.social__picture`).alt = comment.name;
+    elem.querySelector(`.social__text`).textContent = comment.message;
+
+    fragment.appendChild(elem);
+  });
+
+  return fragment;
+}
+
+function showBigPicture(picture) {
+  const commentsHtmlFragment = getHtmlCommentsFragment(picture.comments);
+
+  bigPictureNode.querySelector(`.big-picture__img`).querySelector(`img`).src = picture.url;
+  bigPictureNode.querySelector(`.likes-count`).textContent = picture.likes;
+  bigPictureNode.querySelector(`.comments-count`).textContent = picture.comments.length;
+  bigPictureNode.querySelector(`.social__caption`).textContent = picture.description;
+
+  bigPictureNode.querySelector(`.social__comment-count`).classList.add(`hidden`);
+  bigPictureNode.querySelector(`.comments-loader`).classList.add(`hidden`);
+  bodyNode.classList.add(`modal-open`);
+
+  commentsContainerNode.textContent = ``;
+  commentsContainerNode.appendChild(commentsHtmlFragment);
+
+  bigPictureNode.classList.remove(`hidden`);
+}
+
 function initPictures() {
-  const picturesArr = generatePicturesDataArr();
-  picturesContainer.appendChild(getHtmlPictures(picturesArr));
+  picturesArr = generatePicturesDataArr();
+  const picturesHtmlFragment = getHtmlPicturesFragment(picturesArr);
+  picturesContainerNode.appendChild(picturesHtmlFragment);
 }
 
 initPictures();
+showBigPicture(picturesArr[0]);
