@@ -80,5 +80,9 @@ function getHtmlPictures(pictures) {
   return fragment;
 }
 
-const picturesArr = generatePicturesDataArr();
-picturesContainer.appendChild(getHtmlPictures(picturesArr));
+function initPictures() {
+  const picturesArr = generatePicturesDataArr();
+  picturesContainer.appendChild(getHtmlPictures(picturesArr));
+}
+
+initPictures();
