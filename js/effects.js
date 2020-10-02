@@ -52,11 +52,8 @@ function changeEffectName(effectName = `none`) {
   window.slider.setValue(100);
   changeEffectValue(100);
 
-  if (effectName !== `none`) {
-    window.slider.node.classList.remove(`hidden`);
-  } else {
-    window.slider.node.classList.add(`hidden`);
-  }
+  const method = effectName !== `none` ? `remove` : `add`;
+  window.slider.node.classList[method](`hidden`);
 }
 
 effectsListNode.addEventListener(`click`, (evt) => {

@@ -10,7 +10,9 @@ const previewNodes = {
 };
 
 function previewEscKeydownHandler(evt) {
-  if (window.isEscButton(evt.key) && document.activeElement !== previewNodes.hashtagsInput && document.activeElement !== previewNodes.descriptionTextarea) {
+  if (window.isEscButton(evt.key) &&
+   document.activeElement !== previewNodes.hashtagsInput &&
+   document.activeElement !== previewNodes.descriptionTextarea) {
     closePreview();
   }
 }
