@@ -5,13 +5,20 @@ const KeyboardKeys = {
   ENTER: `Enter`
 };
 
-window.getRandomElem = (array) => array[window.getRandomInt(0, array.length - 1)];
-
-window.getRandomInt = (min = 0, max = Number.MAX_SAFE_INTEGER) => {
+const getRandomInt = (min = 0, max = Number.MAX_SAFE_INTEGER) => {
   const rand = min + Math.random() * (max + 1 - min);
   return Math.floor(rand);
 };
 
-window.isEscButton = (key) => key === KeyboardKeys.ESC;
+const getRandomElem = (array) => array[getRandomInt(0, array.length - 1)];
 
-window.isEnterButton = (key) => key === KeyboardKeys.ENTER;
+const isEscButton = (key) => key === KeyboardKeys.ESC;
+
+const isEnterButton = (key) => key === KeyboardKeys.ENTER;
+
+window.utils = {
+  getRandomElem,
+  getRandomInt,
+  isEscButton,
+  isEnterButton
+};
