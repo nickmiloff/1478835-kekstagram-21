@@ -111,10 +111,19 @@
 
   };
 
+  const triggerInputNode = (node) => {
+    if (node.validity.valid) {
+      node.style.boxShadow = ``;
+    } else {
+      node.style.boxShadow = `0 0 3px 3px red`;
+    }
+  };
+
   window.preview.hashtagsInput.addEventListener(`input`, () => {
     const hashtagsArr = window.preview.hashtagsInput.value.trim().toLowerCase().split(` `);
     const hashtagsErrorMessage = getErrorMessage(hashtagsArr);
 
     window.preview.hashtagsInput.setCustomValidity(hashtagsErrorMessage);
+    triggerInputNode(window.preview.hashtagsInput);
   });
 }
