@@ -30,6 +30,8 @@
 
   const closePreview = () => {
     previewNodes.input.value = ``;
+    previewNodes.hashtagsInput.value = ``;
+    previewNodes.descriptionTextarea.value = ``;
     document.body.classList.remove(`modal-open`);
     previewNodes.modal.classList.add(`hidden`);
 
@@ -56,6 +58,7 @@
   previewNodes.closeButton.addEventListener(`click`, closePreview);
 
   window.preview = {
+    close: closePreview,
     img: previewNodes.img,
     hashtagsInput: previewNodes.hashtagsInput,
     descriptionTextarea: previewNodes.descriptionTextarea

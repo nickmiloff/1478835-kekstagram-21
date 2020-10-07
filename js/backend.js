@@ -1,6 +1,7 @@
 'use strict';
 
 {
+  const TIMEOUT_IN_MS = 100000;
   const errorCodesObj = {
     400: `Неверный запрос (400).`,
     401: `Не авторизованный пользователь (401).`,
@@ -36,7 +37,7 @@
     499: `Клиент закрыл соединение (499).`
   };
 
-  const loadData = (url, onSuccess, onError) => {
+  const createXhr = (onSuccess, onError) => {
     const xhr = new XMLHttpRequest();
 
     xhr.responseType = `json`;
@@ -73,13 +74,27 @@
       onError(`Превышено время ожидания ответа от сервера (002).`);
     });
 
-    xhr.timeout = 10000;
+    xhr.timeout = TIMEOUT_IN_MS;
 
-    xhr.open(`GET`, url);
-    xhr.send();
+    return xhr;
+  };
+
+  const loadData = (url, onSuccess, onError) => {
+    const loadXhr = createXhr(onSuccess, onError);
+
+    loadXhr.open(`GET`, url);
+    loadXhr.send();
+  };
+
+  const uploadData = (url, data, onSuccess, onError) => {
+    const uploadXhr = createXhr(onSuccess, onError);
+
+    uploadXhr.open(`POST`, url);
+    uploadXhr.send(data);
   };
 
   window.backend = {
-    load: loadData
+    load: loadData,
+    upload: uploadData
   };
 }

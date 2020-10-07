@@ -180,10 +180,6 @@
         <button type="reset" class="big-picture__cancel  cancel" id="picture-cancel">Закрыть</button>
       </div>
     </section>
-
-    <section class="pictures-error hidden">
-      <h1 class="pictures-error__title">Ошибка получения данных</h1>
-    </section>
   </main>
 
   <footer class="page-footer  container">
@@ -232,6 +228,13 @@
     </section>
   </template>
 
+  <!-- Сообщение с ошибкой загрузки изображения -->
+  <template id="pictures-error">
+    <section class="pictures-error">
+      <h1 class="pictures-error__title">Ошибка получения данных</h1>
+    </section>
+  </template>
+
   <!-- Экран загрузки изображения -->
   <template id="messages">
     <div class="img-upload__message  img-upload__message--loading">Загружаем...</div>
@@ -248,6 +251,7 @@
   <script src="js/effects.js"></script>
   <script src="js/scale.js"></script>
   <script src="js/validation.js"></script>
+  <script src="js/form.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>
