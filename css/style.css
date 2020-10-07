@@ -1449,3 +1449,35 @@ main {
 .hidden {
   display: none;
 }
+
+
+/* Класс невалидного поля, сообщение об ошибке
+   ========================================================================== */
+.invalid-input {
+  box-shadow: 0 0 3px 3px red;
+}
+
+.pictures-error {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 24px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+
+  background-color: red;
+}
+
+.pictures-error__title {
+  margin-top: 0;
+  margin-bottom: 0;
+
+  font-size: 14px;
+  line-height: 14px;
+  text-align: center;
+  vertical-align: middle;
+
+  color: #ffffff;
+}
