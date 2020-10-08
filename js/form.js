@@ -2,21 +2,25 @@
 
 {
   const submitButtonNode = document.querySelector(`.img-upload__submit`);
-  const formNode = document.querySelector(`.img-upload__form`);
 
   submitButtonNode.addEventListener(`click`, (evt) => {
-    if (formNode.checkValidity()) {
+    if (window.preview.form.checkValidity()) {
       evt.preventDefault();
 
-      const formData = new FormData(formNode);
+      const formData = new FormData(window.preview.form);
 
       window.preview.close();
       window.backend.upload(
-          `https://21.javascript.pages.academy/kekstagram`,
           formData,
           window.errors.uploadSuccess,
           window.errors.uploadError
       );
+    } else {
+      window.preview.hashtagsInput.classList.add(`invalid-input`);
+
+      setTimeout(() => {
+        window.preview.hashtagsInput.classList.remove(`invalid-input`);
+      }, 5000);
     }
   });
 }

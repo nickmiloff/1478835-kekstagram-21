@@ -1,6 +1,10 @@
 'use strict';
 
 {
+  const Url = {
+    LOAD: `https://21.javascript.pages.academy/kekstagram/data`,
+    UPLOAD: `https://21.javascript.pages.academy/kekstagram`
+  };
   const TIMEOUT_IN_MS = 100000;
   const errorCodesObj = {
     400: `Неверный запрос (400).`,
@@ -79,17 +83,17 @@
     return xhr;
   };
 
-  const loadData = (url, onSuccess, onError) => {
+  const loadData = (onSuccess, onError) => {
     const loadXhr = createXhr(onSuccess, onError);
 
-    loadXhr.open(`GET`, url);
+    loadXhr.open(`GET`, Url.LOAD);
     loadXhr.send();
   };
 
-  const uploadData = (url, data, onSuccess, onError) => {
+  const uploadData = (data, onSuccess, onError) => {
     const uploadXhr = createXhr(onSuccess, onError);
 
-    uploadXhr.open(`POST`, url);
+    uploadXhr.open(`POST`, Url.UPLOAD);
     uploadXhr.send(data);
   };
 

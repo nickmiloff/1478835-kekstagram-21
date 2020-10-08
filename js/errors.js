@@ -20,9 +20,7 @@
       }
     };
 
-    elemNode.querySelector(`.${type}__button`).addEventListener(`click`, () => {
-      closeElemNode();
-    });
+    elemNode.querySelector(`.${type}__button`).addEventListener(`click`, closeElemNode);
 
     document.addEventListener(`keydown`, uploadEscKeydownHandler);
 
