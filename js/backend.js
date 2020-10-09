@@ -1,6 +1,11 @@
 'use strict';
 
 {
+  const Url = {
+    LOAD: `https://21.javascript.pages.academy/kekstagram/data`,
+    UPLOAD: `https://21.javascript.pages.academy/kekstagram`
+  };
+  const TIMEOUT_IN_MS = 100000;
   const errorCodesObj = {
     400: `Неверный запрос (400).`,
     401: `Не авторизованный пользователь (401).`,
@@ -36,7 +41,7 @@
     499: `Клиент закрыл соединение (499).`
   };
 
-  const loadData = (url, onSuccess, onError) => {
+  const createXhr = (onSuccess, onError) => {
     const xhr = new XMLHttpRequest();
 
     xhr.responseType = `json`;
@@ -73,13 +78,27 @@
       onError(`Превышено время ожидания ответа от сервера (002).`);
     });
 
-    xhr.timeout = 10000;
+    xhr.timeout = TIMEOUT_IN_MS;
 
-    xhr.open(`GET`, url);
-    xhr.send();
+    return xhr;
+  };
+
+  const loadData = (onSuccess, onError) => {
+    const loadXhr = createXhr(onSuccess, onError);
+
+    loadXhr.open(`GET`, Url.LOAD);
+    loadXhr.send();
+  };
+
+  const uploadData = (data, onSuccess, onError) => {
+    const uploadXhr = createXhr(onSuccess, onError);
+
+    uploadXhr.open(`POST`, Url.UPLOAD);
+    uploadXhr.send(data);
   };
 
   window.backend = {
-    load: loadData
+    load: loadData,
+    upload: uploadData
   };
 }
