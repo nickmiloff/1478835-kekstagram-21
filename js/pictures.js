@@ -3,6 +3,7 @@
 {
   const picturesContainerNode = document.querySelector(`.pictures`);
   const pictureTemplateNode = document.querySelector(`#picture`).content.querySelector(`.picture`);
+  const picturesFiltersNode = document.querySelector(`.img-filters`);
 
   const getHtmlPicturesFragment = (pictures) => {
     const fragment = document.createDocumentFragment();
@@ -35,10 +36,24 @@
     }
   });
 
+  const removePicturesNodes = () => {
+    document.querySelectorAll(`.picture`).forEach((picture) => {
+      picturesContainerNode.removeChild(picture);
+    });
+  };
+
+  const renderPictures = () => {
+    const picturesHtmlFragment = getHtmlPicturesFragment(window.picturesArr);
+    removePicturesNodes();
+    picturesContainerNode.appendChild(picturesHtmlFragment);
+  };
+
   window.pictures = {
     init: () => {
-      const picturesHtmlFragment = getHtmlPicturesFragment(window.picturesArr);
-      picturesContainerNode.appendChild(picturesHtmlFragment);
-    }
+      renderPictures();
+      window.pictures.defaultPicuresArr = window.picturesArr.slice();
+      picturesFiltersNode.classList.remove(`img-filters--inactive`);
+    },
+    render: renderPictures
   };
 }
