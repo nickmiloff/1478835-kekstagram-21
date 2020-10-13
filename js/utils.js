@@ -17,10 +17,13 @@
 
   const isEnterButton = (key) => key === KeyboardKeys.ENTER;
 
+  const shuffleArr = (array) => array.sort(() => Math.random() - 0.5);
+
   window.utils = {
     getRandomElem,
     getRandomInt,
     isEscButton,
-    isEnterButton
+    isEnterButton,
+    shuffleArr
   };
 }

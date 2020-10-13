@@ -44,10 +44,10 @@
 
     window.scale.set();
 
-    imgReader.onloadend = () => {
+    imgReader.addEventListener(`loadend`, () => {
       previewNodes.img.src = imgReader.result;
       openPreview();
-    };
+    });
 
     if (imgFile) {
       imgReader.readAsDataURL(imgFile);
