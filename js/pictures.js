@@ -31,15 +31,17 @@
     if (chosenPictureNode) {
       const chosenPictureIndex = indexOfPicture(chosenPictureNode);
 
-      window.picture.render(window.picturesArr[chosenPictureIndex]);
-      window.picture.open();
+      window.bigPicture.render(window.picturesArr[chosenPictureIndex]);
+      window.bigPicture.open();
     }
   });
 
   const removePicturesNodes = () => {
-    document.querySelectorAll(`.picture`).forEach((picture) => {
+    const picturesNodes = document.querySelectorAll(`.picture`);
+
+    for (const picture of picturesNodes) {
       picturesContainerNode.removeChild(picture);
-    });
+    }
   };
 
   const renderPictures = () => {
