@@ -35,9 +35,7 @@ class Comments {
       this._startCount = this._endCount;
       this._endCount = newCount;
 
-      if (this._startCount === this._length) {
-        this.isMax = true;
-      }
+      this.isMax = this._startCount === this._length;
     }
 
     return this.isMax;
