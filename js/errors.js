@@ -1,5 +1,6 @@
 'use strict';
 
+const TIMEOUT_IN_MS = 5000;
 const mainNode = document.querySelector(`main`);
 const loadErrorNode = document.querySelector(`#pictures-error`).content.querySelector(`.pictures-error`);
 const uploadErrorNode = document.querySelector(`#error`).content.querySelector(`.error`);
@@ -38,7 +39,7 @@ const loadError = (message) => {
 
   setTimeout(() => {
     mainNode.removeChild(elemNode);
-  }, 5000);
+  }, TIMEOUT_IN_MS);
 };
 
 const uploadError = (_) => {
@@ -56,5 +57,6 @@ const uploadSuccess = () => {
 window.errors = {
   loadError,
   uploadError,
-  uploadSuccess
+  uploadSuccess,
+  TIMEOUT_IN_MS
 };

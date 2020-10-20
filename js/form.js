@@ -19,6 +19,6 @@ submitButtonNode.addEventListener(`click`, (evt) => {
 
     setTimeout(() => {
       window.preview.hashtagsInput.classList.remove(`invalid-input`);
-    }, 5000);
+    }, window.errors.TIMEOUT_IN_MS);
   }
 });

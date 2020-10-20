@@ -40,7 +40,7 @@ class Comments {
       }
     }
 
-    return this.isMax ? true : false;
+    return this.isMax;
   }
 }
 

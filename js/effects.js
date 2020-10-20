@@ -39,9 +39,7 @@ const changeEffectValue = (value) => {
   if (currentEffectName !== `none`) {
     const currentEffectParameters = effectsParameters[currentEffectName];
     const currentEffectValue = (currentEffectParameters.max - currentEffectParameters.min) / 100 * value + currentEffectParameters.min;
-    const resultEffectFilter = `${currentEffectParameters.filter}(${currentEffectValue}${currentEffectParameters.measure})`;
-
-    window.preview.img.style.filter = resultEffectFilter;
+    window.preview.img.style.filter = `${currentEffectParameters.filter}(${currentEffectValue}${currentEffectParameters.measure})`;
   }
 };
 
