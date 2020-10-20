@@ -4,7 +4,6 @@ module.exports = {
   entry: [
     `./js/utils.js`,
     `./js/errors.js`,
-    `./js/data.js`,
     `./js/backend.js`,
     `./js/comments.js`,
     `./js/big-picture.js`,
