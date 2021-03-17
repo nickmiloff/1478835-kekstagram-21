@@ -3,6 +3,7 @@
   "version": "19.0.0",
   "private": true,
   "description": "Личный проект «Кекстаграм» от HTML Academy",
+  "homepage": "https://nickmiloff.github.io/1478835-kekstagram-21/",
   "repository": {
     "type": "git",
     "url": "git@github.com:htmlacademy-javascript/1478835-kekstagram-21.git"
