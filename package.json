@@ -11,6 +11,9 @@
     "url": "https://github.com/htmlacademy-javascript/1478835-kekstagram-21/issues"
   },
   "devDependencies": {
+    "axios": "0.21.1",
+    "ini": "1.3.6",
+    "lodash": "4.17.19",
     "eslint": "7.1.0",
     "eslint-config-htmlacademy": "0.6.0",
     "webpack": "5.1.3",
